@@ -16,8 +16,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var STORAGE = "/"
-var STORAGE_PATH = "/"
+var STORAGE = ""
+var STORAGE_PATH = ""
 
 type (
 	Storage struct {
@@ -88,6 +88,10 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 			}
 		}
 	}
+	if base == "" {
+		err = ErrStorageNotFound
+		return
+	}
 	if cache {
 		storage = &Storage{}
 		if err = ModelStorage.Query(ctx).Eq("unique", val).One(storage); err != mgo.ErrNotFound {
@@ -108,6 +112,9 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 			isNew = true
 		}
 		storage.New(ctx, ModelStorage, storage, isNew)
+	}
+	if len(storage.Errors) != 0 {
+		err = storage.Errors[0]
 	}
 	return
 }
