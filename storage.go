@@ -30,12 +30,12 @@ type (
 		HLS    string `json:"hls,omitempty" bson:"hls,omitempty"`
 		HLSKey string `json:"hls_key,omitempty" bson:"hls_key,omitempty"`
 
-		Status  string `json:"status,omitempty" bson:"status" binding:"required,oneof=pending approved banned"`
-		Name    string `json:"name,omitempty" bson:"name" binding:"required,max=512"`
+		Status  string `json:"status,omitempty" bson:"status" binding:"required,oneof=pending approved unapproved banned"`
+		Name    string `json:"name,omitempty" bson:"name" binding:"omitempty,max=512"`
 		Type    string `json:"type,omitempty" bson:"type" binding:"omitempty,max=32"`
 		SubType string `json:"sub_type,omitempty" bson:"sub_type" binding:"omitempty,max=64"`
 
-		Size     int64                  `json:"size,omitempty" bson:"size" binding:"required,min=1"`
+		Size     int64                  `json:"size,omitempty" bson:"size" binding:"omitempty,min=0"`
 		Duration float64                `json:"duration,omitempty" bson:"duration,omitempty" binding:"omitempty,min=0,max=2592000"`
 		Width    int                    `json:"width,omitempty" bson:"width,omitempty" binding:"omitempty,min=0,max=32767"`
 		Height   int                    `json:"height,omitempty" bson:"height,omitempty" binding:"omitempty,min=0,max=32767"`
@@ -92,8 +92,8 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 		err = ErrStorageNotFound
 		return
 	}
+	storage = &Storage{}
 	if cache {
-		storage = &Storage{}
 		if err = ModelStorage.Query(ctx).Eq("unique", val).One(storage); err != mgo.ErrNotFound {
 			return
 		}
