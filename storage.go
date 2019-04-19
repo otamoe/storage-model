@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
-	"path"
 	"strings"
 	"time"
 
@@ -100,7 +99,7 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 	}
 
 	if storage.Unique == "" {
-		storage = fetch(path.Join(base, val) + "/")
+		storage = fetch(base + "/" + val + "/")
 		storage.Unique = val
 	}
 
