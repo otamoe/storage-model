@@ -28,27 +28,27 @@ type (
 
 		Unique string `json:"unique" bson:"unique" binding:"required"`
 
-		Path string `json:"path" bson:"path,omitempty" binding:"required"`
+		Path string `json:"path" bson:"path" binding:"required"`
 
 		HLS    string `json:"hls,omitempty" bson:"hls,omitempty"`
 		HLSKey string `json:"hls_key,omitempty" bson:"hls_key,omitempty"`
 
-		Status  string `json:"status,omitempty" bson:"status,omitempty" binding:"required,oneof=pending approved unapproved banned"`
-		Name    string `json:"name,omitempty" bson:"name,omitempty" binding:"omitempty,max=512"`
-		Type    string `json:"type,omitempty" bson:"type,omitempty" binding:"omitempty,max=32"`
-		SubType string `json:"sub_type,omitempty" bson:"sub_type,omitempty" binding:"omitempty,max=64"`
+		Status  string `json:"status,omitempty" bson:"status" binding:"required,oneof=pending approved unapproved banned"`
+		Name    string `json:"name,omitempty" bson:"name" binding:"omitempty,max=512"`
+		Type    string `json:"type,omitempty" bson:"type" binding:"omitempty,max=32"`
+		SubType string `json:"sub_type,omitempty" bson:"sub_type" binding:"omitempty,max=64"`
 
-		Size     int64                  `json:"size,omitempty" bson:"size,omitempty" binding:"omitempty,min=0"`
+		Size     int64                  `json:"size,omitempty" bson:"size" binding:"omitempty,min=0"`
 		Duration float64                `json:"duration,omitempty" bson:"duration,omitempty" binding:"omitempty,min=0,max=2592000"`
 		Width    int                    `json:"width,omitempty" bson:"width,omitempty" binding:"omitempty,min=0,max=32767"`
 		Height   int                    `json:"height,omitempty" bson:"height,omitempty" binding:"omitempty,min=0,max=32767"`
 		Pixels   int                    `json:"pixels,omitempty" bson:"pixels,omitempty" binding:"omitempty,min=0,max=268435456"`
 		Meta     map[string]interface{} `json:"meta,omitempty" bson:"meta,omitempty"`
 
-		Complete bool `json:"complete,omitempty" bson:"complete,omitempty"`
+		Complete bool `json:"complete,omitempty" bson:"complete"`
 
-		CreatedAt *time.Time `json:"created_at,omitempty" bson:"created_at,omitempty" binding:"required"`
-		UpdatedAt *time.Time `json:"updated_at,omitempty" bson:"updated_at,omitempty" binding:"required"`
+		CreatedAt *time.Time `json:"created_at,omitempty" bson:"created_at" binding:"required"`
+		UpdatedAt *time.Time `json:"updated_at,omitempty" bson:"updated_at" binding:"required"`
 		DeletedAt *time.Time `json:"deleted_at,omitempty" bson:"deleted_at,omitempty"`
 
 		Errors     []*errs.Error `json:"errors,omitempty" bson:"errors,omitempty"`
@@ -79,21 +79,27 @@ var (
 
 func Get(ctx context.Context, val string, cache bool, save bool) (storage *Storage, err error) {
 	val2 := strings.Split(val, "/")
-	var base string
+	var url string
+	var auth bool
 	if len(val2) == 2 && bson.IsObjectIdHex(val2[0]) && bson.IsObjectIdHex(val2[1]) {
-		base = STORAGE
+		if STORAGE == "" {
+			err = ErrStorageNotFound
+			return
+		}
+		url = STORAGE + "/" + val + "/"
 	} else {
-		base = STORAGE_PATH
+		if STORAGE_PATH == "" {
+			err = ErrStorageNotFound
+			return
+		}
+		url = STORAGE_PATH + "/" + val
+		auth = true
 		for _, val := range val2 {
 			if val == "" || strings.TrimSpace(val) != val || val[0] == '.' || strings.ContainsAny(val, "/:*?#%&<>\\") {
 				err = ErrStorageNotFound
 				return
 			}
 		}
-	}
-	if base == "" {
-		err = ErrStorageNotFound
-		return
 	}
 	storage = &Storage{}
 	if cache {
@@ -103,7 +109,7 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 	}
 
 	if storage.Unique == "" {
-		storage = fetch(base+"/"+val+"/", base == STORAGE_PATH)
+		storage = fetch(url, auth)
 		storage.Unique = val
 	}
 
