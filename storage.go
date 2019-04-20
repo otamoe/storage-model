@@ -107,7 +107,7 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 			return
 		}
 	}
-
+	err = nil
 	if storage.Unique == "" {
 		storage = fetch(url, auth)
 		storage.Unique = val
