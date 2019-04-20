@@ -18,6 +18,9 @@ import (
 var STORAGE = ""
 var STORAGE_PATH = ""
 
+var USERNAME = ""
+var PASSWORD = ""
+
 type (
 	Storage struct {
 		mgoModel.DocumentBase `json:"-" bson:"-" binding:"-"`
@@ -99,7 +102,7 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 	}
 
 	if storage.Unique == "" {
-		storage = fetch(base + "/" + val + "/")
+		storage = fetch(base+"/"+val+"/", base == STORAGE_PATH)
 		storage.Unique = val
 	}
 
@@ -118,7 +121,7 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 	return
 }
 
-func fetch(url string) (storage *Storage) {
+func fetch(url string, auth bool) (storage *Storage) {
 	var err error
 	storage = &Storage{}
 
@@ -157,6 +160,9 @@ func fetch(url string) (storage *Storage) {
 	if req, err = http.NewRequest("GET", url, nil); err != nil {
 		err = ErrStorageNotFound
 		return
+	}
+	if auth {
+		req.SetBasicAuth(USERNAME, PASSWORD)
 	}
 	req = req.WithContext(timeoutCtx)
 	if res, err = client.Do(req); err != nil {
