@@ -24,6 +24,7 @@ var PASSWORD = ""
 type (
 	Storage struct {
 		mgoModel.DocumentBase `json:"-" bson:"-" binding:"-"`
+		ID                    bson.ObjectId `json:"_id" bson:"_id" binding:"required,objectid"`
 
 		Unique string `json:"unique" bson:"unique" binding:"required"`
 
@@ -112,6 +113,9 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 			isNew = true
 		} else if err = ModelStorage.Query(ctx).Eq("unique", val).One(storage); err == mgo.ErrNotFound {
 			isNew = true
+		}
+		if isNew {
+			storage.ID = bson.NewObjectId()
 		}
 		storage.New(ctx, ModelStorage, storage, isNew)
 	}
