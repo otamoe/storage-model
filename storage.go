@@ -143,9 +143,13 @@ func fetch(url string, auth bool) (storage *Storage) {
 		switch err.(type) {
 		case *errs.Error:
 			ginErr = err.(*errs.Error)
+			if ginErr.Err != nil {
+				ginErr.Message = ginErr.Err.Error()
+				ginErr.Err = nil
+			}
 		default:
 			ginErr = &errs.Error{
-				Err: err,
+				Message: err.Error(),
 			}
 		}
 
