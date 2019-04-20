@@ -104,6 +104,9 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 	storage = &Storage{}
 	if cache {
 		if err = ModelStorage.Query(ctx).Eq("unique", val).One(storage); err != mgo.ErrNotFound {
+			if len(storage.Errors) != 0 {
+				err = storage.Errors[0]
+			}
 			return
 		}
 	}
