@@ -170,7 +170,7 @@ func fetch(url string, auth bool) (storage *Storage) {
 
 	client := &http.Client{}
 
-	timeoutCtx, timeoutCancel := context.WithTimeout(context.Background(), time.Second*10)
+	timeoutCtx, timeoutCancel := context.WithTimeout(context.Background(), time.Second*20)
 	defer timeoutCancel()
 
 	var req *http.Request
