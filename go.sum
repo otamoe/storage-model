@@ -10,10 +10,12 @@ github.com/go-playground/locales v0.12.1 h1:2FITxuFt/xuCNP1Acdhv62OzaCiviiE4kotf
 github.com/go-playground/locales v0.12.1/go.mod h1:IUMDtCfWo/w/mtMfIE/IG2K+Ey3ygWanZIBtBW0W2TM=
 github.com/go-playground/universal-translator v0.16.0 h1:X++omBR/4cE2MNg91AoC3rmGrCjJ8eAeUP/K/EKx4DM=
 github.com/go-playground/universal-translator v0.16.0/go.mod h1:1AnU7NaIRDWWzGEKwgtJRd2xk99HeFyHw3yid4rvQIY=
+github.com/go-redis/redis v6.15.2+incompatible h1:9SpNVG76gr6InJGxoZ6IuuxaCOQwDAhzyXg+Bs+0Sb4=
 github.com/go-redis/redis v6.15.2+incompatible/go.mod h1:NAIEuMOZ/fxfXJIrKDQDz8wamY7mA7PouImQ2Jvg6kA=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.3.1 h1:YF8+flBXS5eO826T4nzqPrxfhQThhXl0YzfuUPu4SBg=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
+github.com/google/brotli v1.0.7 h1:fxwwohNEPaVS6qvtnjwgzRR62Upa70pkw0f9qarjrQs=
 github.com/google/brotli v1.0.7/go.mod h1:XpGqLY1HgMKTQI5TU8iAKE/okaKqS9h1e6KRlRztlOU=
 github.com/hpcloud/tail v1.0.0/go.mod h1:ab1qPbhIpdTxEkNHXyeSf5vhxWSCs/tWer42PpOxQnU=
 github.com/json-iterator/go v1.1.6/go.mod h1:+SdeFBvtyEkXs7REEP0seUULqWtbJapLOCVDaaPEHmU=
@@ -32,6 +34,8 @@ github.com/onsi/ginkgo v1.8.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+W
 github.com/onsi/gomega v1.5.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=
 github.com/otamoe/gin-server v0.0.0-20190417131835-16f0a3f7019d h1:SRkAvzqCM/9YQj9pTcPP/sT4oP4RtgKfwUTbh3WGsYs=
 github.com/otamoe/gin-server v0.0.0-20190417131835-16f0a3f7019d/go.mod h1:BM45jMnvnwRwnLEo5FzD6YE+YI5LN4qapCaVXqYgYoU=
+github.com/otamoe/gin-server v0.0.0-20190428104039-dc0b3530b487 h1:H5hm9i/foXFJ2BkfP5TYXR3SaYBKC2CurOtqsJunswE=
+github.com/otamoe/gin-server v0.0.0-20190428104039-dc0b3530b487/go.mod h1:BM45jMnvnwRwnLEo5FzD6YE+YI5LN4qapCaVXqYgYoU=
 github.com/otamoe/mgo-model v0.0.0-20190412052249-cb4bbacc4d83 h1:sFhHijX3c6vBnj3WHjS6B8FVFFaLD+zA0cFlw4YmP9s=
 github.com/otamoe/mgo-model v0.0.0-20190412052249-cb4bbacc4d83/go.mod h1:aoMmk9QA+FLmmd0HPrsg3hjJO0ILegKPorYfhEqVsFI=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
