@@ -15,12 +15,6 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-var STORAGE = ""
-var STORAGE_PATH = ""
-
-var USERNAME = ""
-var PASSWORD = ""
-
 type (
 	Storage struct {
 		mgoModel.DocumentBase `json:"-" bson:"-" binding:"-"`
