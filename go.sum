@@ -36,6 +36,8 @@ github.com/otamoe/gin-server v0.0.0-20190417131835-16f0a3f7019d h1:SRkAvzqCM/9YQ
 github.com/otamoe/gin-server v0.0.0-20190417131835-16f0a3f7019d/go.mod h1:BM45jMnvnwRwnLEo5FzD6YE+YI5LN4qapCaVXqYgYoU=
 github.com/otamoe/gin-server v0.0.0-20190428104039-dc0b3530b487 h1:H5hm9i/foXFJ2BkfP5TYXR3SaYBKC2CurOtqsJunswE=
 github.com/otamoe/gin-server v0.0.0-20190428104039-dc0b3530b487/go.mod h1:BM45jMnvnwRwnLEo5FzD6YE+YI5LN4qapCaVXqYgYoU=
+github.com/otamoe/gin-server v0.0.0-20190430111119-f701ff61a517 h1:tVvdp/haiemRGSsydv96RTN6BpmOiedDXtiua9mC5OA=
+github.com/otamoe/gin-server v0.0.0-20190430111119-f701ff61a517/go.mod h1:BM45jMnvnwRwnLEo5FzD6YE+YI5LN4qapCaVXqYgYoU=
 github.com/otamoe/mgo-model v0.0.0-20190412052249-cb4bbacc4d83 h1:sFhHijX3c6vBnj3WHjS6B8FVFFaLD+zA0cFlw4YmP9s=
 github.com/otamoe/mgo-model v0.0.0-20190412052249-cb4bbacc4d83/go.mod h1:aoMmk9QA+FLmmd0HPrsg3hjJO0ILegKPorYfhEqVsFI=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
