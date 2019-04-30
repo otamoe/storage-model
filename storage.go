@@ -3,6 +3,7 @@ package model
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -76,17 +77,17 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 	var url string
 	var auth bool
 	if len(val2) == 2 && bson.IsObjectIdHex(val2[0]) && bson.IsObjectIdHex(val2[1]) {
-		if STORAGE == "" {
-			err = ErrStorageNotFound
+		if StorageOrigin == "" {
+			err = errors.New("storage-model.StorageOrigin is required")
 			return
 		}
-		url = STORAGE + "/" + val + "/"
+		url = StorageOrigin + "/" + val + "/"
 	} else {
-		if STORAGE_PATH == "" {
+		if StoragePathOrigin == "" {
 			err = ErrStorageNotFound
 			return
 		}
-		url = STORAGE_PATH + "/" + val
+		url = StoragePathOrigin + "/" + val
 		auth = true
 		for _, val := range val2 {
 			if val == "" || strings.TrimSpace(val) != val || val[0] == '.' || strings.ContainsAny(val, "/:*?#%&<>\\") {
@@ -129,6 +130,7 @@ func Get(ctx context.Context, val string, cache bool, save bool) (storage *Stora
 }
 
 func fetch(url string, auth bool) (storage *Storage) {
+
 	var err error
 	storage = &Storage{}
 
@@ -173,7 +175,15 @@ func fetch(url string, auth bool) (storage *Storage) {
 		return
 	}
 	if auth {
-		req.SetBasicAuth(USERNAME, PASSWORD)
+		if Username == "" {
+			err = errors.New("storage-model.Username is required")
+			return
+		}
+		if Password == "" {
+			err = errors.New("storage-model.Password is required")
+			return
+		}
+		req.SetBasicAuth(Username, Password)
 	}
 	req = req.WithContext(timeoutCtx)
 	if res, err = client.Do(req); err != nil {

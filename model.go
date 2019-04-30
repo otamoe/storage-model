@@ -1,16 +1,20 @@
 package model
 
 var (
-	STORAGE      = ""
-	STORAGE_PATH = ""
-
-	USERNAME = ""
-	PASSWORD = ""
+	StorageOrigin     string
+	StoragePathOrigin string
+	Username          string
+	Password          string
 )
 
-func Start(storageApi, storagePath, username, password string) {
-	STORAGE = storageApi
-	STORAGE_PATH = storagePath
-	USERNAME = username
-	PASSWORD = password
+func Config(storageOrigin, storagePathOrigin, username, password string) {
+	StorageOrigin = storageOrigin
+	StoragePathOrigin = storagePathOrigin
+	Username = username
+	Password = password
+
+}
+
+func Start() {
+
 }
