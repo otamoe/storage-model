@@ -38,10 +38,10 @@ github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3Rllmb
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.8.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/gomega v1.5.0/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=
-github.com/otamoe/gin-server v0.1.0 h1:3/T88pZYQckQF8Hnp1LH8xJO9C2fgwYv75YGVx1H3cE=
-github.com/otamoe/gin-server v0.1.0/go.mod h1:tQ5B6fVN7HhhSIjTcbtrNMqef0dMyR6lmfU3INYPES4=
-github.com/otamoe/mgo-model v0.1.0 h1:py6MASAHwP1/hyHNk+0cTZw/eGm6wDBioCCmy3mRNBA=
-github.com/otamoe/mgo-model v0.1.0/go.mod h1:aoMmk9QA+FLmmd0HPrsg3hjJO0ILegKPorYfhEqVsFI=
+github.com/otamoe/gin-server v0.1.2 h1:+Aaq91QCnhKklKF99tkk7/qnTqUu+bqde8t7fNHFnFs=
+github.com/otamoe/gin-server v0.1.2/go.mod h1:VxPGr/HqHdUuLlHKyLB0BTJgYAehxWhstEF7RTFVPnM=
+github.com/otamoe/mgo-model v0.1.1 h1:X67Rx4w5iO8C+fhJnqINVyf8FkhmWF6TGVOq/uQu7+I=
+github.com/otamoe/mgo-model v0.1.1/go.mod h1:aoMmk9QA+FLmmd0HPrsg3hjJO0ILegKPorYfhEqVsFI=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/sirupsen/logrus v1.4.1 h1:GL2rEmy6nsikmW0r8opw9JIRScdMF5hA8cOYLH7In1k=
